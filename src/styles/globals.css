@@ -1,7 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.btn {
-    @apply rounded-full;
+/* @layer components {
+    .button {
+        @apply rounded-3xl bg-white text-black h-auto w-20;
+    }
+} */
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #88abff;
 }

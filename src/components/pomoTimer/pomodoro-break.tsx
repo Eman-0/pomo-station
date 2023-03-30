@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
+import Button from "../uiMisc/button";
 
 const PomodoroBreak = ({setIsDisplayModal} : {setIsDisplayModal :Dispatch<SetStateAction<boolean>>} ) => {
     const [[mins, secs], setTime] = useState([0, 2]);
@@ -40,7 +41,7 @@ const PomodoroBreak = ({setIsDisplayModal} : {setIsDisplayModal :Dispatch<SetSta
               .padStart(2, "0")}`}
           </div>
           
-          <button onClick={resetTimer}>Reset</button>
+          <Button title="Reset" onClickHandle={resetTimer} />
         </div>
       </>
     );

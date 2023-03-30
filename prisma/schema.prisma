@@ -20,6 +20,18 @@ model Example {
     updatedAt DateTime @updatedAt
 }
 
+model Note {
+    id              String       @id @default(cuid())
+    userId        String
+    createdAt       DateTime  @default(now())
+    updatedAt       DateTime  @updatedAt
+    title           String    @unique
+    description     String
+    completed       Boolean?  @default(false)
+    user            User     @relation(fields: [userId], references: [id])
+
+}
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -55,6 +67,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    notes         Note[]
 }
 
 model VerificationToken {
