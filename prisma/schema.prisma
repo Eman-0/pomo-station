@@ -22,14 +22,12 @@ model Example {
 
 model Note {
     id              String       @id @default(cuid())
-    userId        String
+    userId          String
     createdAt       DateTime  @default(now())
-    updatedAt       DateTime  @updatedAt
-    title           String    @unique
-    description     String
-    completed       Boolean?  @default(false)
+    // updatedAt       DateTime  @updatedAt
+    text     String
+    completed       Boolean  @default( value: false)
     user            User     @relation(fields: [userId], references: [id])
-
 }
 
 // Necessary for Next auth

@@ -10,8 +10,6 @@ type SpinnerProps = {
 const Spinner: React.FC<SpinnerProps> = ({
   width = 5,
   height = 5,
-  color,
-  bgColor,
 }) => {
   return (
     <svg
