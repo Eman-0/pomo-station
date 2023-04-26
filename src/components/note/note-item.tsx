@@ -1,17 +1,16 @@
 import clsx from "clsx";
 import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
-import "todomvc-app-css/index.css";
-import "todomvc-common/base.css";
-
 import { api } from "../../utils/api";
 import type { Note } from "@prisma/client";
+import { toast } from "react-toastify";
 
 function useClickOutside({
   ref,
   callback,
   enabled,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: RefObject<any>;
   callback: () => void;
   enabled: boolean;
@@ -85,6 +84,7 @@ function ListItem({ task }: { task: Note }) {
         undefined,
         allTasks.filter((t) => t.id != task.id)
       );
+      toast.success("Task deleted successfully", {autoClose: 3000, position: "top-right"});
     },
   });
 
@@ -96,18 +96,22 @@ function ListItem({ task }: { task: Note }) {
         id: task.id,
         data: { text },
       });
+      toast.success("Task edited successfully", {autoClose: 3000, position: "top-right"});
       setEditing(false);
     },
   });
   return (
-    <li
+    <div
       key={task.id}
-      className={clsx(editing && "editing", completed && "completed")}
+      className={clsx(
+        editing && "editing",
+        completed && "completed",
+        "m-2 flex items-center content-between"
+      )}
       ref={wrapperRef}
     >
-      <div className="view">
         <input
-          className="toggle"
+          className={clsx(editing && "hidden", "rounded-full mr-8")}
           type="checkbox"
           checked={task.completed}
           onChange={(e) => {
@@ -121,39 +125,45 @@ function ListItem({ task }: { task: Note }) {
           autoFocus={editing}
         />
         <label
+        className={clsx( editing && "hidden",
+          completed && "text-red-600 line-through",
+          "text-grey-darkest w-full"
+        )}
           onDoubleClick={(e) => {
             setEditing(true);
             e.currentTarget.focus();
           }}
+          
         >
           {text}
         </label>
+        <input
+        className={clsx(editing ? "inline-block w-full" : "hidden")}
+          value={text}
+          ref={inputRef}
+          onChange={(e) => {
+            const newText = e.currentTarget.value;
+            setText(newText);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              editTask.mutate({
+                id: task.id,
+                data: { text },
+              });
+              setEditing(false);
+            }
+          }}
+        />
         <button
-          className="destroy"
+          className={clsx(editing && "hidden", "flex-grow-0 ml-2 rounded border-2 border-red-600 p-2 text-red-600 hover:bg-red-600 hover:text-white")}
           onClick={() => {
             deleteTask.mutate(task.id);
           }}
-        />
-      </div>
-      <input
-        className="edit"
-        value={text}
-        ref={inputRef}
-        onChange={(e) => {
-          const newText = e.currentTarget.value;
-          setText(newText);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            editTask.mutate({
-              id: task.id,
-              data: { text },
-            });
-            setEditing(false);
-          }
-        }}
-      />
-    </li>
+        >
+          Delete
+        </button>
+    </div>
   );
 }
 

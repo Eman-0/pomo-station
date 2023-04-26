@@ -17,8 +17,11 @@ const Clock = () => {
 
     return (
         <>
-            <div style={{color :"white"}}>
-            <p>{currTime?.toLocaleTimeString()}</p>
+            <div className="h-32 lg:w-3/4 lg:max-w-lg bg-[#eadfb5] text-5xl">
+                <div className="">
+                <p>{currTime?.toLocaleTimeString()}</p>
+                </div>
+            
             </div>
         </>
     )

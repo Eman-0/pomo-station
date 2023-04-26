@@ -1,15 +1,18 @@
 import { z } from 'zod';
-import { publicProcedure, createTRPCRouter } from '../trpc';
+import { protectedProcedure, createTRPCRouter } from '../trpc';
 
 export const todoRouter = createTRPCRouter({
-  all: publicProcedure.query(({ ctx }) => {
+  all: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.note.findMany({
       orderBy: {
         createdAt: 'asc',
       },
+      where: {
+        userId: ctx.session.user.id
+      }
     });
   }),
-  add: publicProcedure
+  add: protectedProcedure
     .input(
       z.object({
         id: z.string().optional(),
@@ -27,7 +30,7 @@ export const todoRouter = createTRPCRouter({
       });
       return todo;
     }),
-  edit: publicProcedure
+  edit: protectedProcedure
     .input(
       z.object({
         id: z.string().cuid(),
@@ -45,13 +48,13 @@ export const todoRouter = createTRPCRouter({
       });
       return todo;
     }),
-  delete: publicProcedure
+  delete: protectedProcedure
     .input(z.string().cuid())
     .mutation(async ({ ctx, input: id }) => {
       await ctx.prisma.note.delete({ where: { id } });
       return id;
     }),
-  clearCompleted: publicProcedure.mutation(async ({ ctx }) => {
+  clearCompleted: protectedProcedure.mutation(async ({ ctx }) => {
     await ctx.prisma.note.deleteMany({ where: { completed: true } });
 
     return ctx.prisma.note.findMany();

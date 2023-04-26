@@ -12,7 +12,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <div id="note-modal"></div>
+        <div id="break-modal"></div>
       </body>
     </Html>
   );
