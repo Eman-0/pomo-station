@@ -24,7 +24,6 @@ model Note {
     id              String       @id @default(cuid())
     userId          String
     createdAt       DateTime  @default(now())
-    updatedAt       DateTime  @updatedAt
     text     String
     completed       Boolean  @default( value: false)
     user            User     @relation(fields: [userId], references: [id])
