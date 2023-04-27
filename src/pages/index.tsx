@@ -6,16 +6,12 @@ import { useState } from "react";
 import PomodoroTimer from "../components/pomoTimer/pomodoro-timer";
 import NoteDisplay from "../components/note/notes-display";
 import BreakModal from "../components/modal/modal";
-import PomodoroBreak from "../components/pomoTimer/pomodoro-break";
 import Menu from "../components/uiMisc/menu";
-import GlobalTimer from "../components/pomoTimer/timer-template";
 import { toast } from "react-toastify";
 
 const Home: NextPage = () => {
   const [openBreakModal, setOpenBreakModal] = useState(false);
   const [openMenuModal, setOpenMenuModal] = useState(false);
-  const [workMin, setWorkMin] = useState("0");
-  const [breakMin, setBreakMin] = useState("0");
   const { data: sessionData } = useSession();
   const filter = "all";
 
@@ -94,67 +90,8 @@ const Home: NextPage = () => {
         </div>
 
         <div className="flex place-content-center text-center">
-          <PomodoroTimer workMin={workMin} setIsBreak={setOpenBreakModal} />
+          <PomodoroTimer />
         </div>
-        <div className="self-center">
-          <div className="flex place-content-end">
-            <GlobalTimer
-              title="Work interval"
-              timerMin={workMin}
-              setTimerMin={setWorkMin}
-            />
-            <div className="">
-              <div className="align-self-end flex flex-col">
-                <button
-                  className="triangle-btn-up m-1"
-                  onClick={() => {
-                    setWorkMin((parseInt(workMin.toString()) + 1).toString());
-                  }}
-                ></button>
-                <button
-                  className="triangle-btn-down m-1"
-                  onClick={() => {
-                    setWorkMin((parseInt(workMin.toString()) - 1).toString());
-                  }}
-                ></button>
-              </div>
-            </div>
-          </div>
-          <div className="flex place-content-end">
-            <GlobalTimer
-              title="Break interval"
-              timerMin={breakMin}
-              setTimerMin={setBreakMin}
-            />
-            <div className="">
-              <div className="align-self-end flex flex-col">
-                <button
-                  className="triangle-btn-up m-1"
-                  onClick={() => {
-                    setBreakMin((parseInt(breakMin.toString()) + 1).toString());
-                  }}
-                ></button>
-                <button
-                  className="triangle-btn-down m-1"
-                  onClick={() => {
-                    setBreakMin((parseInt(breakMin.toString()) - 1).toString());
-                  }}
-                ></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        {openBreakModal && (
-          <BreakModal
-            openBreakModal={openBreakModal}
-            setOpenBreakModal={setOpenBreakModal}
-          >
-            <PomodoroBreak
-              breakMin={breakMin}
-              setOpenBreakModal={setOpenBreakModal}
-            />
-          </BreakModal>
-        )}
         {openMenuModal && (
           <BreakModal
             openBreakModal={openMenuModal}

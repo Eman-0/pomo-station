@@ -66,7 +66,7 @@ const NoteDisplay = (props: NoteDisplayProps) => {
           shadow-sm
           focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
         "
-          placeholder="What will you accomplish?"
+          placeholder="Enter TODOs here"
           autoFocus
           onKeyDown={(e) => {
             const text = e.currentTarget.value.trim();
