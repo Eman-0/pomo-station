@@ -8,6 +8,7 @@ import NoteDisplay from "../components/note/notes-display";
 import BreakModal from "../components/modal/modal";
 import Menu from "../components/uiMisc/menu";
 import { toast } from "react-toastify";
+import { env } from "../env/server.mjs";
 
 const Home: NextPage = () => {
   const [openBreakModal, setOpenBreakModal] = useState(false);
@@ -32,6 +33,7 @@ const Home: NextPage = () => {
       <main className="flex h-screen flex-col">
         <div className="flex px-4">
           <div className="grid w-full self-center p-4 text-end text-2xl text-black">
+            
             {sessionData ? (
               <div className="justify-self-center">
                 <Image
@@ -46,7 +48,7 @@ const Home: NextPage = () => {
                 />
               </div>
             ) : (
-              <span className="flex place-content-center place-items-center">
+              <span className="col-start-2 col-end-3 flex place-content-center place-items-center">
                 <button
                   className="btn-blue"
                   onClick={
@@ -65,7 +67,7 @@ const Home: NextPage = () => {
                         }
                       : () => {
                           signIn("discord", {
-                            callbackUrl: "http://localhost:3000/",
+                            callbackUrl: env.NEXTAUTH_URL,
                           })
                             .then((res) => {
                               if (res?.ok) {
@@ -83,7 +85,7 @@ const Home: NextPage = () => {
                 >
                   {sessionData ? "Sign out" : "Sign in"}
                 </button>
-                to take notes!
+                <p className="ml-2">to take notes!</p>
               </span>
             )}
           </div>
@@ -114,8 +116,26 @@ const Home: NextPage = () => {
             className="text-blue-500"
           >
             Tomato
+          </a>
+          {", "}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://icons8.com/icon/7913/no-audio"
+            className="text-blue-500"
+          >
+            No Audio
+          </a>
+          {", "}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://icons8.com/icon/2795/audio"
+            className="text-blue-500"
+          >
+            Audio
           </a>{" "}
-          icon by{" "}
+          icons by{" "}
           <a
             target="_blank"
             rel="noreferrer"
