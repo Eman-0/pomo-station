@@ -67,7 +67,7 @@ const Home: NextPage = () => {
                         }
                       : () => {
                           signIn("discord", {
-                            callbackUrl: env.NEXTAUTH_URL,
+                           
                           })
                             .then((res) => {
                               if (res?.ok) {
