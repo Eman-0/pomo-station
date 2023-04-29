@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           name="viewport"
           content="width=device-width, initial-scale=1"
         ></meta>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icons8-tomato-color-32.png" />
       </Head>
       <main className="flex h-screen flex-col">
         <div className="flex px-4">
@@ -104,6 +104,28 @@ const Home: NextPage = () => {
           {sessionData && <NoteDisplay filter={filter} />}
         </div>
       </main>
+      <footer className="flex place-content-center">
+        <span>
+          {" "}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://icons8.com/icon/18102/tomato"
+            className="text-blue-500"
+          >
+            Tomato
+          </a>{" "}
+          icon by{" "}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://icons8.com"
+            className="text-blue-500"
+          >
+            Icons8
+          </a>
+        </span>
+      </footer>
     </>
   );
 };
