@@ -79,13 +79,6 @@ const NoteDisplay = (props: NoteDisplayProps) => {
           placeholder="Enter TODOs here"
           autoFocus
           onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            const text = e.currentTarget.value.trim();
-            if (e.key === "Enter" && text) {
-              addTask.mutate({ text });
-              e.currentTarget.value = "";
-            }
-          }}
         />
         <button
           type="submit"
