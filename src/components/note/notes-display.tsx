@@ -1,5 +1,5 @@
 import { useIsMutating } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
 import ListItem from "./note-item";
 import { toast } from "react-toastify";
@@ -9,10 +9,13 @@ interface NoteDisplayProps {
 }
 
 const NoteDisplay = (props: NoteDisplayProps) => {
+  const [text, setText] = useState("");
+
   const allTasks = api.todo.all.useQuery(undefined, {
     staleTime: 3000,
   });
   const utils = api.useContext();
+
   const addTask = api.todo.add.useMutation({
     async onMutate({ text }) {
       await utils.todo.all.cancel();
@@ -27,7 +30,10 @@ const NoteDisplay = (props: NoteDisplayProps) => {
           createdAt: new Date(),
         },
       ]);
-      toast.success("Task added successfully", {autoClose: 3000, position: "top-right"});
+      toast.success("Task added successfully", {
+        autoClose: 3000,
+        position: "top-right",
+      });
     },
   });
 
@@ -39,7 +45,10 @@ const NoteDisplay = (props: NoteDisplayProps) => {
         undefined,
         tasks.filter((t) => !t.completed)
       );
-      toast.success("Tasks cleared successfully", {autoClose: 3000, position: "top-right"});
+      toast.success("Tasks cleared successfully", {
+        autoClose: 3000,
+        position: "top-right",
+      });
     },
   });
 
@@ -54,13 +63,14 @@ const NoteDisplay = (props: NoteDisplayProps) => {
   }, [number, utils]);
   return (
     <div className="m-4 rounded bg-white p-6 shadow lg:w-3/4 lg:max-w-lg">
-      <div className="mb-4">
+      <form onSubmit={(e) => {e.preventDefault(); addTask.mutate({ text }); setText("")}} className="mb-4 flex">
         <input
           type="text"
+          value={text}
           className="
-          mt-1
+          m-2
           block
-          w-full
+          w-5/6
           rounded-md
           border-gray-300
           shadow-sm
@@ -68,6 +78,7 @@ const NoteDisplay = (props: NoteDisplayProps) => {
         "
           placeholder="Enter TODOs here"
           autoFocus
+          onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => {
             const text = e.currentTarget.value.trim();
             if (e.key === "Enter" && text) {
@@ -76,7 +87,13 @@ const NoteDisplay = (props: NoteDisplayProps) => {
             }
           }}
         />
-      </div>
+        <button
+          type="submit"
+          className="m-2 flex-grow-0 rounded border-2 border-green-600 p-2 text-green-600 hover:bg-green-600 hover:text-white"
+        >
+          Add
+        </button>
+      </form>
 
       <ul className="h-96 overflow-y-auto">
         {/* These are here just to show the structure of the list items */}

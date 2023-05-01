@@ -33,11 +33,10 @@ const Home: NextPage = () => {
       <main className="flex h-screen flex-col">
         <div className="flex px-4">
           <div className="grid w-full self-center p-4 text-end text-2xl text-black">
-            
             {sessionData ? (
               <div className="justify-self-center">
                 <Image
-                  src={sessionData.user.image || "null"}
+                  src={sessionData.user.image || "/icons8-tomato-color-32.png"}
                   width="40"
                   height="40"
                   alt="profile-picture"
@@ -66,9 +65,7 @@ const Home: NextPage = () => {
                             });
                         }
                       : () => {
-                          signIn("discord", {
-                           
-                          })
+                          signIn("discord", {})
                             .then((res) => {
                               if (res?.ok) {
                                 toast.success("Welcome", {
