@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         ></meta>
         <link rel="icon" href="/icons8-tomato-color-32.png" />
       </Head>
-      <main className="bg-gradient-to-b from-lime-500 via-lime-400 to-lime-300 flex flex-col lg:h-screen">
+      <main className="bg-gradient-to-b from-lime-500 via-lime-400 to-lime-300 flex flex-col items-center lg:h-screen">
         <div className="flex px-4">
           <div className="flex w-full self-center place-content-center p-4 text-center text-2xl text-black">
             {sessionData ? (
@@ -87,9 +87,9 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className="flex place-content-center text-center">
+       
           <PomodoroTimer />
-        </div>
+       
         {openMenuModal && (
           <BreakModal
             openBreakModal={openMenuModal}
