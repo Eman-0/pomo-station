@@ -8,7 +8,6 @@ import NoteDisplay from "../components/note/notes-display";
 import BreakModal from "../components/modal/modal";
 import Menu from "../components/uiMisc/menu";
 import { toast } from "react-toastify";
-import { env } from "../env/server.mjs";
 
 const Home: NextPage = () => {
   const [openBreakModal, setOpenBreakModal] = useState(false);
@@ -30,9 +29,9 @@ const Home: NextPage = () => {
         ></meta>
         <link rel="icon" href="/icons8-tomato-color-32.png" />
       </Head>
-      <main className="flex h-screen flex-col">
+      <main className="bg-gradient-to-b from-lime-400 via-lime-300 to-lime-200 flex h-screen flex-col">
         <div className="flex px-4">
-          <div className="grid w-full self-center p-4 text-end text-2xl text-black">
+          <div className="flex w-full self-center place-content-center p-4 text-center text-2xl text-black">
             {sessionData ? (
               <div className="justify-self-center">
                 <Image
@@ -103,7 +102,7 @@ const Home: NextPage = () => {
           {sessionData && <NoteDisplay filter={filter} />}
         </div>
       </main>
-      <footer className="flex place-content-center">
+      <footer className="bg-lime-200 flex place-content-center text-xs">
         <span>
           {" "}
           <a
