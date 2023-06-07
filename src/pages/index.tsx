@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   const filter = "all";
 
   return (
-    <>
+    <div className="h-screen">
       <Head>
         <title>PomoStation</title>
         <meta
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         ></meta>
         <link rel="icon" href="/icons8-tomato-color-32.png" />
       </Head>
-      <main className="bg-gradient-to-b from-lime-400 via-lime-300 to-lime-200 flex flex-col">
+      <main className="bg-gradient-to-b from-lime-400 via-lime-300 to-lime-200 flex flex-col lg:h-screen">
         <div className="flex px-4">
           <div className="flex w-full self-center place-content-center p-4 text-center text-2xl text-black">
             {sessionData ? (
@@ -142,7 +142,7 @@ const Home: NextPage = () => {
           </a>
         </span>
       </footer>
-    </>
+    </div>
   );
 };
 
