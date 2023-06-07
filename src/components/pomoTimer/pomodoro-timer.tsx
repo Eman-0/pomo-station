@@ -130,9 +130,9 @@ const PomodoroTimer = () => {
     </div>
   );
 
-  // #623e25
+  // #623e25 43291F
   return (
-    <div className="m-4 flex w-5/6 flex-col rounded-md border-4 border-solid border-[#242223] bg-[#623e25] text-center md:w-3/4 md:max-w-md lg:w-3/4 lg:max-w-lg">
+    <div className="m-4 flex w-5/6 flex-col rounded-2xl border-4 border-solid border-[#242223] bg-[#504136] text-center md:w-3/4 md:max-w-md lg:w-3/4 lg:max-w-lg">
       <div className="m-2 flex place-content-center">
         <div className="flex place-content-end">
           <div className="self-center">
@@ -150,7 +150,7 @@ const PomodoroTimer = () => {
             </div>
           </div>
         </div>
-        <div className="ml-4 w-1/2 rounded-md border-4 border-solid border-[#170f10] bg-[#939879] p-2 text-5xl text-[#262425]">
+        <div className="ml-4 w-1/2 rounded-2xl border-4 border-solid border-[#170f10] bg-[#939879] p-2 text-5xl text-[#262425]">
           <div className="text-sm">
             <p>{isTimerBreak ? "BREAK" : "STUDY"}</p>
           </div>

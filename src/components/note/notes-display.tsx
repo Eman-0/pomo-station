@@ -62,7 +62,7 @@ const NoteDisplay = (props: NoteDisplayProps) => {
     }
   }, [number, utils]);
   return (
-    <div className="m-4 rounded bg-gradient-to-b from-stone-100 to-stone-50 p-6 shadow lg:w-3/4 lg:max-w-lg">
+    <div className="m-4 rounded-2xl bg-gradient-to-b from-stone-100 to-stone-50 p-6 shadow lg:w-3/4 lg:max-w-lg">
       <form onSubmit={(e) => {e.preventDefault(); addTask.mutate({ text }); setText("")}} className="mb-4 flex">
         <input
           type="text"
