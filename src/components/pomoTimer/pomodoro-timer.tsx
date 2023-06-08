@@ -132,7 +132,7 @@ const PomodoroTimer = () => {
 
   // #623e25 43291F
   return (
-    <div className="m-4 flex flex-col rounded-2xl border-4 border-solid border-[#242223] bg-[#504136] text-center w-3/4 sm:max-w-[36.25rem] md:max-w-[36.25rem] lg:max-w-[36.25rem]">
+    <div className="m-4 flex flex-col rounded-2xl border-4 border-solid border-[#242223] bg-[#504136] text-center w-5/6 sm:max-w-[36.25rem] md:max-w-[36.25rem] lg:max-w-[36.25rem]">
       <div className="m-2 flex place-content-center">
         <div className="flex place-content-end">
           <div className="self-center">

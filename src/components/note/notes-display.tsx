@@ -62,7 +62,7 @@ const NoteDisplay = (props: NoteDisplayProps) => {
     }
   }, [number, utils]);
   return (
-    <div className="m-4 rounded-2xl bg-gradient-to-b from-stone-100 to-stone-50 p-6 shadow w-3/4 sm:w-[30rem] md:w-[32rem]">
+    <div className="flex flex-col m-4 rounded-2xl bg-gradient-to-b from-stone-100 to-stone-50 p-6 shadow h-96 sm:h-5/6 md:h-5/6 w-5/6 sm:w-[30rem] md:w-[32rem]">
       <form onSubmit={(e) => {e.preventDefault(); addTask.mutate({ text }); setText("")}} className="mb-4 flex">
         <input
           type="text"
@@ -88,7 +88,7 @@ const NoteDisplay = (props: NoteDisplayProps) => {
         </button>
       </form>
 
-      <ul className="h-96 overflow-y-auto">
+      <ul className="flex flex-col overflow-y-auto">
         {/* These are here just to show the structure of the list items */}
         {/* List items should get the class `editing` when editing and `completed` when marked as completed */}
         {allTasks.data

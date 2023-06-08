@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   const filter = "all";
 
   return (
-    <div className="h-screen">
+    <>
       <Head>
         <title>PomoStation</title>
         <meta
@@ -29,9 +29,9 @@ const Home: NextPage = () => {
         ></meta>
         <link rel="icon" href="/icons8-tomato-color-32.png" />
       </Head>
-      <main className="bg-gradient-to-b from-lime-500 via-lime-400 to-lime-300 flex flex-col items-center lg:h-screen">
-        <div className="flex px-4">
-          <div className="flex w-full self-center place-content-center p-4 text-center text-2xl text-black">
+      <div className="main-footer-container flex min-h-screen flex-col justify-between bg-gradient-to-b from-lime-500 via-lime-400 to-lime-300">
+        <main className="flex flex-col items-center">
+          <div className="flex w-full place-content-center self-center p-4 text-center text-2xl text-black">
             {sessionData ? (
               <div className="justify-self-center">
                 <Image
@@ -85,64 +85,62 @@ const Home: NextPage = () => {
               </span>
             )}
           </div>
-        </div>
 
-       
           <PomodoroTimer />
-       
-        {openMenuModal && (
-          <BreakModal
-            openBreakModal={openMenuModal}
-            setOpenBreakModal={setOpenMenuModal}
-          >
-            <Menu setOpenBreakModal={setOpenBreakModal} />
-          </BreakModal>
-        )}
-        <div className="mt-4 flex items-center justify-center font-sans">
+
+          {openMenuModal && (
+            <BreakModal
+              openBreakModal={openMenuModal}
+              setOpenBreakModal={setOpenMenuModal}
+            >
+              <Menu setOpenBreakModal={setOpenBreakModal} />
+            </BreakModal>
+          )}
+
           {sessionData && <NoteDisplay filter={filter} />}
-        </div>
-      </main>
-      <footer className="bg-lime-300 flex place-content-center text-xs">
-        <span>
-          {" "}
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://icons8.com/icon/18102/tomato"
-            className="text-blue-500"
-          >
-            Tomato
-          </a>
-          {", "}
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://icons8.com/icon/7913/no-audio"
-            className="text-blue-500"
-          >
-            No Audio
-          </a>
-          {", "}
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://icons8.com/icon/2795/audio"
-            className="text-blue-500"
-          >
-            Audio
-          </a>{" "}
-          icons by{" "}
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://icons8.com"
-            className="text-blue-500"
-          >
-            Icons8
-          </a>
-        </span>
-      </footer>
-    </div>
+        </main>
+        <footer className="bottom-0 flex h-4 place-content-center text-xs">
+          <span>
+            {" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://icons8.com/icon/18102/tomato"
+              className="text-blue-500"
+            >
+              Tomato
+            </a>
+            {", "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://icons8.com/icon/7913/no-audio"
+              className="text-blue-500"
+            >
+              No Audio
+            </a>
+            {", "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://icons8.com/icon/2795/audio"
+              className="text-blue-500"
+            >
+              Audio
+            </a>{" "}
+            icons by{" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://icons8.com"
+              className="text-blue-500"
+            >
+              Icons8
+            </a>
+          </span>
+        </footer>
+      </div>
+    </>
   );
 };
 
